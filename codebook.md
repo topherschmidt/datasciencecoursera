@@ -52,7 +52,7 @@ Variable Name | Variable | Values or Explanation
 subjectid | Unique id for each subject in the experiment | Unique id for subject in the experiment.  Possible values range 1-30
 activityname | Descripton of activity performed by subject | Description of one of six possible activities performed during the experiment.  Possible values are: WALKING  WALKING_UPSTAIRS  WALKING_DOWNSTAIRS  SITTING  STANDING  LAYING  
 featurename | Description of the variable measured | Descriptive term for the data measured.  There are 79 measures of various mean and standard deviation data points. See footnote for possible values.
-mean(measure) | Mean of measurement for each subject/activity/feature. | Arithmetic mean of all measurements for the listed subject/activity/feature.
+meanofmeasure | Mean of measurement for each subject/activity/feature. | Arithmetic mean of all measurements for the listed subject/activity/feature.
 
 
 *Possible values for featurename are listed below:  

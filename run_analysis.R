@@ -76,7 +76,8 @@ tidy_dat <- select(dat_long, subjectid, activityname, featurename, measure) %>%
 grouped_dat <- group_by(tidy_dat, subjectid, activityname, featurename)
 #summarize the data, capturing mean() of each feature
 means_dat <- summarize(grouped_dat, mean(measure))
-
+#fix the column names
+names(means_dat) <- c("subjectid", "activityname", "featurename", "meanofmeasure")
 
 #write the final result to a csv file:
 write.csv(tidy_dat, "detail_data_set.csv", row.names = FALSE)
