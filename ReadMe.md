@@ -84,10 +84,14 @@ The last processing step is to use the final data to find the mean measurement f
 
 ## Use this code to read data in rstudio
 
-address <- "https://raw.githubusercontent.com/topherschmidt/datasciencecoursera/master/summary_data_set.csv"
-summarydata <- read.csv(url(address), header = TRUE) 
-View(summarydata)
+## Data set for step 4:
 
-address <- "https://raw.githubusercontent.com/topherschmidt/datasciencecoursera/master/detail_data_set.csv"
-detaildata <- read.csv(url(address), header = TRUE) 
-View(detaildata)
+address <- "https://raw.githubusercontent.com/topherschmidt/datasciencecoursera/master/detail_data_set.csv"  
+detaildata <- read.csv(url(address), header = TRUE)   
+View(detaildata)  
+
+## Data set for step 5:
+
+address <- "https://raw.githubusercontent.com/topherschmidt/datasciencecoursera/master/summary_data_set.csv"  
+summarydata <- read.csv(url(address), header = TRUE)  
+View(summarydata)  
