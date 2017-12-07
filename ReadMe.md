@@ -81,3 +81,9 @@ measure (the resultant measure)
 
 
 The last processing step is to use the final data to find the mean measurement for each subject/activity/feature.  This is accomplished by grouping the data.table and then calling summarize to apply the mean to the grouped data.  The ouput is then written to file.
+
+## Peer reviewer, you can use this code to view the output data in rstudio!
+
+address <- "https://s3.amazonaws.com/coursera-uploads/peer-review/7dc3ef73fa35c9947b5c7e030e19ad3d/summary_data_set.txt"
+summarydata <- read.table(url(address), header = TRUE) 
+View(summarydata)
