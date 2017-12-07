@@ -62,7 +62,7 @@ For the purposes of this exercise the Inertial Signals files are not used (they 
 
 Data for train / test are formatted in the same way.  For each train and test directory, there are 3 files used, subject, x, and y.  These files can be joined by indexing the records by their respective position in the file.  For example, row 1 of each file relates to row 1 of each corresponding file.  The y file can be joined to the activity_label.txt file to find the actual name of the activity in question.
 
-The main data file, x, contains columns for the 561 features listed in the features.txt file.  By indexing the column name, less the leading 'V' character, one my index the column name to the feature.txt file feature id.
+The main data file, x, contains columns for the 561 features listed in the features.txt file.  By indexing the column name, less the leading 'V' character, one may index the column name to the feature.txt file feature id.
 
 ## Analysis of processing
 
@@ -80,18 +80,4 @@ featurename (the name of the feature, or specific variable measured)
 measure (the resultant measure)
 
 
-The last processing step is to use the final data to find the mean measurement for each subject/activity/feature.  This is accomplished by grouping the data.table and then calling summarize to apply the mean to the grouped data.
-
-## Use this code to read data in rstudio
-
-## Data set for step 4:
-
-address <- "https://raw.githubusercontent.com/topherschmidt/datasciencecoursera/master/detail_data_set.csv"  
-detaildata <- read.csv(url(address), header = TRUE)   
-View(detaildata)  
-
-## Data set for step 5:
-
-address <- "https://raw.githubusercontent.com/topherschmidt/datasciencecoursera/master/summary_data_set.csv"  
-summarydata <- read.csv(url(address), header = TRUE)  
-View(summarydata)  
+The last processing step is to use the final data to find the mean measurement for each subject/activity/feature.  This is accomplished by grouping the data.table and then calling summarize to apply the mean to the grouped data.  The ouput is then written to file.

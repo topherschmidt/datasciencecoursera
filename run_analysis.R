@@ -79,9 +79,9 @@ means_dat <- summarize(grouped_dat, mean(measure))
 #fix the column names
 names(means_dat) <- c("subjectid", "activityname", "featurename", "meanofmeasure")
 
-#write the final result to a csv file:
-write.csv(tidy_dat, "detail_data_set.csv", row.names = FALSE)
-write.csv(means_dat, "summary_data_set.csv", row.names = FALSE)
+#write the final result to a file:
+#write.table(tidy_dat, "detail_data_set.txt", row.names = FALSE)
+write.table(means_dat, "summary_data_set.txt", row.names = FALSE)
 
 
 

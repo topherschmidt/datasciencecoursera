@@ -12,40 +12,25 @@ PRESENTATION OF BODY MOVEMENT STUDY DATA IN "TIDY DATA" FORMAT
 
 SUMMARY: The purpose of this data collection is to present the data collected for the "Human Activity Recognition Using Smartphones Dataset Version 1.0 " study.  Data are joined from the original data set, measures were "narrowed" from wide columnar format to descriptor / measure format, and only measurements pertaining to mean and standard deviation are retained in the final data set.  
 
-EXTENT OF COLLECTION: 2 data files + run_analysis.R processing script + ReadMe.md  
+EXTENT OF COLLECTION: 1 data file + run_analysis.R processing script + ReadMe.md + this codebook  
 
-EXTENT OF PROCESSING: Join and reshape data, summary file includes a mean of each variable type recorded in the detail file.  
+EXTENT OF PROCESSING: Join and reshape data, calculate mean of each subject/activity/feature.  
 
-DATA FORMAT: Records with comma separated values (csv)  
+DATA FORMAT: Records with space " " separated values.  
 
- Part 1: detail_data_set.csv (detail data collected over time)  
-     File Structure: rectangular  
-     Cases: 813,621  
-     Variables: 4  
-     Record Length: variable  
-     Records Per Case: 1  
 
- Part 2: summary_data_set.csv  (sumarized detail data, only one record per subject/activity/feature) 
+ Part 1: summary_data_set.txt  (sumarized detail data, only one record per subject/activity/feature) 
      File Structure: rectangular  
      Cases: 14,220  
      Variables: 4  
      Record Length: variable  
      Records Per Case: 1  
      
- Part 3: codebook for all parts  
+ Part 2: codebook for all parts  
  
  
-Codebook for detail_data_set.csv
 
-Variable Name | Variable | Values or Explanation   
-------- | ---------- | --------------------------------------------:
-subjectid | Unique id for each subject in the experiment | Unique id for subject in the experiment.  Possible values range 1-30
-activityname | Descripton of activity performed by subject | Description of one of six possible activities performed during the experiment.  Possible values are: WALKING  WALKING_UPSTAIRS  WALKING_DOWNSTAIRS  SITTING  STANDING  LAYING  
-featurename | Description of the variable measured | Descriptive term for the data measured.  There are 79 measures of various mean and standard deviation data points. See footnote for possible values.
-measure | Actual measurement | Actual measurement recorded of the feature
-
-
-Codebook for summary_data_set.csv
+Codebook for summary_data_set.txt
 
 Variable Name | Variable | Values or Explanation   
 ------- | ---------- | --------------------------------------------:
