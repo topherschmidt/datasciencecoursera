@@ -1,11 +1,3 @@
----
-title: "ReadMe"
-output: html_document
----
-
-## R Markdown
-
-
 The purpose of this file is to document the input files to the script run_analysis.R and the functions performed by the script itself.  
 
 ## Analysis of input files
@@ -66,24 +58,18 @@ The main data file, x, contains columns for the 561 features listed in the featu
 
 ## Analysis of processing
 
-The script begins by downloading and unzipping the zip archive file.  Once files are available on the local file system, they are read into the program using read.table().  Some column names are modified to improve readability of the script.
+The script begins by downloading and unzipping the zip archive file.  Once files are available on the local file system, they are read into the program using read.table().  Some column names are modified to improve readability of the script.  
 
-Each data file to be joined (subject, x, and y) are given row numbers "rowid" to facilitate positional matching of records from one file to the next during merging.  The 3 data files each for train and test are merged separately and then bound together to create a master data set containing both train and test data.  Please note that once these two sets are bound together the rowid is no longer unique to each data set and is not used in subsequent processing.
+Each data file to be joined (subject, x, and y) are given row numbers "rowid" to facilitate positional matching of records from one file to the next during merging.  The 3 data files each for train and test are merged separately and then bound together to create a master data set containing both train and test data.  Please note that once these two sets are bound together the rowid is no longer unique to each data set and is not used in subsequent processing.  
 
-Once loaded, the x data is "narrowed" from the wide 561 columns of features measured down to a feature / measure column pair.  This greatly improves processing ease for the data set.  The 561 feature columns are named V1-V561, the numerical component relating to the feature id in the features file that corresponds to a text description of the feature.  The "V" part of the feature is stripped away so that this can be joined to the features.txt file, giving us access to the text description of the feature for each of our rows in the data set.  Also note that prior to joining the features.txt data to our main data set, we limit the contents of the features to mean and standard deviation measures, thereby constraining our final result to the desired results.  Any feature which contains the strings "mean" or "std" is considered to be a feature recording a mean or standard deviation and is included in our data set.
+Once loaded, the features.txt file is used to index the columns (v1-v561) that pertain to the features measured during the study.  We eliminate any of the feature id / labels that correspond to any measurements besides means or standard deviaitons. Any feature which contains the strings "mean" or "std" is considered to be a feature recording a mean or standard deviation and is included in our data set.  Each feature label in the file includes an id which can be adjusted with a leading "V" to match the column names in the data.  
 
-The final data set is stored into a variable called tidy_dat, which contains the following elements (sorted)
+Only the subject id, text description of activity, and 79 measures of features related to mean and standard deviaiton are preserved.  The data are grouped by subject id and activity, and the mean is calculated for all of the measurement columns.
 
-subjectid (id of subject for which this data corresponds)
-activityname (text name of the activity for which measurements were collected)
-featurename (the name of the feature, or specific variable measured)
-measure (the resultant measure)
-
-
-The last processing step is to use the final data to find the mean measurement for each subject/activity/feature.  This is accomplished by grouping the data.table and then calling summarize to apply the mean to the grouped data.  The ouput is then written to file.
+The ouput is then written to file using write.table without row names.
 
 ## Peer reviewer, you can use this code to view the output data in rstudio!
 
-address <- "https://s3.amazonaws.com/coursera-uploads/peer-review/7dc3ef73fa35c9947b5c7e030e19ad3d/summary_data_set.txt"
+address <- "https://s3.amazonaws.com/coursera-uploads/peer-review/3c4e850b2277d7cfcc26f4c1eda44811/summary_data_set.txt"
 summarydata <- read.table(url(address), header = TRUE) 
 View(summarydata)

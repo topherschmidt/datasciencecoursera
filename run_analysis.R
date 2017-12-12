@@ -56,31 +56,19 @@ dat <- rbind(traindat, testdat)
 #append the activity label
 dat <- merge(dat, activity_labels, by = "activityid")
 
-#Narrow the data
-dat_long <- gather(dat, "featureid", "measure", V1:V561, factor_key=TRUE)
+#Adjust the feature labels so they match the column names in the data
+feature_labels$featureid <- gsub("([0-9]+)", "V\\1", feature_labels$featureid)
 
-#remove the leading "V" from the feature type field
-dat_long$featureid <- gsub("V", "", dat_long$featureid)
+#select out only the data of interest
+tidydata <- select(dat, subjectid, activityname, feature_labels$featureid)
 
-#Merge in the feature names.  Note that because this is an inner join with the 
-#feature lables which have been cleansed of all but mean and std measurements only the 
-#relevant data will be retained.
-dat_long <- merge(dat_long, feature_labels, by = "featureid")
+# Fix the column names
+names(tidydata) <- c("subjectid", "activityname", as.character(feature_labels$featurename))
 
-#return only the required data for a tidy data set:
-tidy_dat <- select(dat_long, subjectid, activityname, featurename, measure) %>%
-    arrange(subjectid, activityname, featurename)
-
-#from the tidy data set get the average of each variable for each activity for each subject
-#first group the df so we can call summarize
-grouped_dat <- group_by(tidy_dat, subjectid, activityname, featurename)
-#summarize the data, capturing mean() of each feature
-means_dat <- summarize(grouped_dat, mean(measure))
-#fix the column names
-names(means_dat) <- c("subjectid", "activityname", "featurename", "meanofmeasure")
+#Summarize the data for each subject and activity, finding the mean for all features measured
+means_dat <- tidydata %>% group_by(subjectid, activityname) %>% summarize_all(funs(mean))
 
 #write the final result to a file:
-#write.table(tidy_dat, "detail_data_set.txt", row.names = FALSE)
 write.table(means_dat, "summary_data_set.txt", row.names = FALSE)
 
 
